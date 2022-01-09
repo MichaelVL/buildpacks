@@ -26,7 +26,7 @@ jobs:
         uses: buildpacks/github-actions/setup-pack@v4.1.0
       - name: Build image with pack
         run: |
-          pack ${{ env.IMAGE_NAME }} --path sample-nodejs-app --builder $(BUILDER)
+          pack build ${{ env.IMAGE_NAME }} --path sample-nodejs-app --builder $(BUILDER)
       - name: Show image data
         run: |
           docker image ls
