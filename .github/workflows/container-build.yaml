@@ -1,0 +1,33 @@
+name: Build and push container image
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+    tags:
+      - v*
+    paths:
+      - sample-nodejs-app/**
+      - .github/**
+
+env:
+  BUILDER: paketobuildpacks/builder@sha256:7308b52dc7dfd9ef2d1874ae905b44d489b1867bdb9c3c6fd21c28f941437abd
+  IMAGE_NAME: michaelvl/sample-app
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install pack CLI
+        uses: buildpacks/github-actions/setup-pack@v4.1.0
+      - name: Build image with pack
+        run: |
+          pack ${{ env.IMAGE_NAME }} --path sample-nodejs-app --builder $(BUILDER)
+      - name: Show image data
+        run: |
+          docker image ls
+          docker image inspect ${{ env.IMAGE_NAME }}
