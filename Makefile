@@ -17,7 +17,7 @@ clean:
 
 .PHONY: build-legacy
 build-legacy:
-	docker build -f legacy/Dockerfile -t buildpack-test sample-app
+	docker build -f legacy/Dockerfile -t buildpack-test sample-ts-app
 
 
 .PHONY: build-ts
