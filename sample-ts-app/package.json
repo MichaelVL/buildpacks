@@ -1,13 +1,16 @@
 {
+    "engines": {
+	"node": "16.13.1",
+	"npm":  "8.1.2"
+    },
     "name": "sample-app",
     "version": "1.0.0",
     "description": "",
-    "main": "src/main.ts",
+    "main": "dist/main.js",
     "scripts": {
-        "build": "tsc",
-        "prestart": "npm run build",
-        "start": "node dist/main.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "tsc --build",
+        "postbuild": "npm prune --production && npm cache clean --force",
+        "start": "node dist/main.js"
     },
     "keywords": [],
     "author": "",

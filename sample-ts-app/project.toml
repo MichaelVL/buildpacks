@@ -1,0 +1,19 @@
+[project]
+id = "sample-ts-app"
+name = "Sample Typescript app with no Dockerfile"
+version = "3.1415"
+authors = [ "developer@example.com" ]
+
+[[build.env]]
+name = "NODE_ENV"
+value = "development"
+
+[[build.env]]
+name = "BP_NODE_RUN_SCRIPTS"
+value = "build,postbuild"
+
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
+# https://github.com/paketo-buildpacks/image-labels
+[[build.env]]
+name = "BP_OCI_AUTHORS"
+value = "builder@example.com"

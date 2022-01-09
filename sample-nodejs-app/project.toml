@@ -1,0 +1,14 @@
+[project]
+id = "sample-nodejs-app"
+name = "Sample app with no Dockerfile"
+version = "3.1415"
+authors = [ "developer@example.com" ]
+
+#[[build.env]]
+#name = "NODE_ENV"
+#value = "production"
+#value = "development"
+
+#[[build.env]]
+#name = "BP_NODE_RUN_SCRIPTS"
+#value = "build,postbuild"

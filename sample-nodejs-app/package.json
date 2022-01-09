@@ -1,0 +1,19 @@
+{
+    "engines": {
+	"node": "16.13.1",
+	"npm":  "8.1.2"
+    },
+    "name": "sample-nodejs-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/main.js",
+    "scripts": {
+        "start": "node src/main.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.2"
+    }
+}
