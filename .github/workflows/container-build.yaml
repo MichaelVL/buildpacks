@@ -50,8 +50,3 @@ jobs:
       - name: Build image with pack
         run: |
           pack build ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} --tag ${{ steps.meta.outputs.tags }} --path sample-nodejs-app --builder ${{ env.BUILDER }} --publish
-
-      - name: Show image data
-        run: |
-          docker image ls
-          docker image inspect ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
