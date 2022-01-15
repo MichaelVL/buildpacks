@@ -25,6 +25,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Ensure lower case image repository
+        run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ env.IMAGE_NAME }} | tr '[:upper:]' '[:lower:]')
+  
       - name: Install pack CLI
         uses: buildpacks/github-actions/setup-pack@v4.1.0
 
@@ -37,7 +40,7 @@ jobs:
 
       - name: Build image with pack
         run: |
-          pack build ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest --path sample-nodejs-app --builder ${{ env.BUILDER }} --publish
+          pack build ${{ env.REGISTRY }}/${{ env.IMAGE_REPOSITORY }} --path sample-nodejs-app --builder ${{ env.BUILDER }} --publish
 
       - name: Show image data
         run: |
