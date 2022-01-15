@@ -4,6 +4,19 @@ name = "Sample app with no Dockerfile"
 version = "3.1415"
 authors = [ "developer@example.com" ]
 
+# See https://spdx.org/licenses for license names
+[[project.licenses]]
+type = "MIT"
+
+# org.opencontainers.xxx are set with buildpack: https://github.com/paketo-buildpacks/image-labels
+[[build.env]]
+name = "BP_OCI_DESCRIPTION"
+value = "Sample NodeJS application from https://github.com/MichaelVL/buildpacks"
+
+[[build.env]]
+name = "BP_OCI_URL"
+value = "https://github.com/MichaelVL/buildpacks"
+
 #[[build.env]]
 #name = "NODE_ENV"
 #value = "production"
