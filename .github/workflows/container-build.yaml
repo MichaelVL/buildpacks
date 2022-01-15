@@ -1,6 +1,7 @@
 name: Build and push container image
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -12,7 +13,8 @@ on:
       - .github/**
 
 env:
-  BUILDER: paketobuildpacks/builder@sha256:7308b52dc7dfd9ef2d1874ae905b44d489b1867bdb9c3c6fd21c28f941437abd
+  BUILDER: paketobuildpacks/builder:base
+  REGISTRY: ghcr.io
   IMAGE_NAME: michaelvl/sample-app
 
 jobs:
@@ -22,11 +24,21 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Install pack CLI
         uses: buildpacks/github-actions/setup-pack@v4.1.0
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build image with pack
         run: |
-          pack build ${{ env.IMAGE_NAME }} --path sample-nodejs-app --builder ${{ env.BUILDER }}
+          pack build ${{ env.IMAGE_NAME }} --path sample-nodejs-app --builder ${{ env.BUILDER }} --publish
+
       - name: Show image data
         run: |
           docker image ls
