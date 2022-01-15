@@ -25,9 +25,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Ensure lower case image repository
-        run: echo ::set-env name=IMAGE_REPOSITORY::$(echo ${{ env.IMAGE_NAME }} | tr '[:upper:]' '[:lower:]')
-  
       - name: Install pack CLI
         uses: buildpacks/github-actions/setup-pack@v4.1.0
 
