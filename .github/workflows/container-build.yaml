@@ -37,7 +37,7 @@ jobs:
 
       - name: Build image with pack
         run: |
-          pack build ${{ env.IMAGE_NAME }}:latest --path sample-nodejs-app --builder ${{ env.BUILDER }} --publish
+          pack build ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest --path sample-nodejs-app --builder ${{ env.BUILDER }} --publish
 
       - name: Show image data
         run: |
